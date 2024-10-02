@@ -8,41 +8,25 @@
 				</v-btn>
 			</v-card-title>
 			<v-card-text>
-				<ScreenshotCarousel
-					ref="carousel"
-					:height="carouselHeight"
-					:screenshots="currentProject.screenshots"
-					:active-slide="activeSlide"
-					@update:activeSlide="updateActiveSlide"
-				/>
+				<ScreenshotCarousel ref="carousel" :height="carouselHeight" :screenshots="currentProject.screenshots"
+					:active-slide="activeSlide" @update:activeSlide="updateActiveSlide" />
 
 				<div class="thumbnail-container">
 					<div class="thumbnail-row">
-						<div
-							v-for="(screenshot, index) in currentProject.screenshots"
-							:key="index"
-							class="thumbnail-col"
-						>
-							<v-img
-								:src="screenshot"
-								class="thumbnail mr-4"
-								@click="goToSlide(index)"
+						<div v-for="(screenshot, index) in currentProject.screenshots" :key="index"
+							class="thumbnail-col">
+							<v-img :src="screenshot" class="thumbnail mr-4" @click="goToSlide(index)"
 								:class="{ 'selected-thumbnail': index === activeSlide }"
-								:ref="'thumbnail-' + index"
-							></v-img>
+								:ref="'thumbnail-' + index"></v-img>
 						</div>
 					</div>
 				</div>
 
 				<p class="mt-4">{{ currentProject.description }}</p>
 			</v-card-text>
-			<v-card-actions class="justify-end">
-				<v-btn icon @click="prev">
-					<v-icon>mdi-chevron-left</v-icon>
-				</v-btn>
-				<v-btn icon @click="next">
-					<v-icon>mdi-chevron-right</v-icon>
-				</v-btn>
+			<v-card-actions class="d-flex justify-space-between">
+				<v-btn text @click="prev">Previous Project</v-btn>
+				<v-btn text @click="next">Next Project</v-btn>
 			</v-card-actions>
 		</v-card>
 
@@ -143,6 +127,12 @@ export default {
 		activeSlide(newIndex) {
 			this.scrollThumbnailIntoView(newIndex)
 		},
+		currentProject(newProject) {
+			this.activeSlide = 0
+			if (this.$refs.carousel && typeof this.$refs.carousel.goTo === 'function') {
+				this.$refs.carousel.goTo(0)
+			}
+		},
 	},
 }
 </script>
@@ -184,6 +174,7 @@ export default {
 }
 
 .selected-thumbnail {
-	border: 2px solid #ff5722; /* Highlight color */
+	border: 2px solid #ff5722;
+	/* Highlight color */
 }
 </style>
