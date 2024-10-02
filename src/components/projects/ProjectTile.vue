@@ -1,6 +1,6 @@
 <template>
-	<v-card :to="`/projects/${project.id}`" hover>
-		<v-img :src="project.image" :width="this.width">
+	<v-card @click="handleClick" hover class="project-tile">
+		<v-img :src="project.image" :width="width">
 			<v-card-title class="fill-height align-end">
 				<span class="white--text">{{ project.title }}</span>
 			</v-card-title>
@@ -19,11 +19,18 @@ export default {
 		width: {
 			type: [String, Number],
 			required: true,
-		},
-		height: {
-			type: [String, Number],
-			required: true,
+		}
+	},
+	methods: {
+		handleClick() {
+			this.$emit('project-clicked', this.project);
 		},
 	},
 }
 </script>
+
+<style scoped>
+.project-tile {
+	cursor: pointer;
+}
+</style>

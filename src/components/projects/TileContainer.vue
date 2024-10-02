@@ -1,7 +1,7 @@
 <template>
 	<v-row justify="center">
 		<v-col cols="auto" v-for="project in projects" :key="project.id">
-			<ProjectTile :project="project" :width="width" :height="height" />
+			<ProjectTile :project="project" :width="this.width" @project-clicked="handleProjectClicked" />
 		</v-col>
 	</v-row>
 </template>
@@ -22,10 +22,11 @@ export default {
 		width: {
 			type: [String, Number],
 			required: true,
-		},
-		height: {
-			type: [String, Number],
-			required: true,
+		}
+	},
+	methods: {
+		handleProjectClicked(project) {
+			this.$emit('project-clicked', project);
 		},
 	},
 }
