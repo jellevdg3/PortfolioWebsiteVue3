@@ -8,16 +8,16 @@
 				</v-btn>
 			</v-card-title>
 			<v-card-text>
-				<ScreenshotCarousel @screenshot-clicked="openScreenshotDialog" :screenshots="currentProject.screenshots"
-					ref="carousel" />
+				<ScreenshotCarousel ref="carousel" :height="carouselHeight" :screenshots="currentProject.screenshots"
+					@screenshot-clicked="openScreenshotDialog" />
 
 				<div class="thumbnail-container">
-					<v-row no-gutters>
-						<v-col v-for="(screenshot, index) in currentProject.screenshots" :key="index"
-							class="thumbnail-col" cols="auto">
+					<div class="thumbnail-row">
+						<div v-for="(screenshot, index) in currentProject.screenshots" :key="index"
+							class="thumbnail-col">
 							<v-img :src="screenshot" class="thumbnail mr-4" @click="goToSlide(index)"></v-img>
-						</v-col>
-					</v-row>
+						</div>
+					</div>
 				</div>
 
 				<p class="mt-4">{{ currentProject.description }}</p>
@@ -70,7 +70,15 @@ export default {
 		return {
 			screenshotDialog: false,
 			selectedScreenshot: '',
+			carouselHeight: 200, // Default height
 		}
+	},
+	mounted() {
+		this.updateCarouselHeight()
+		window.addEventListener('resize', this.updateCarouselHeight)
+	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this.updateCarouselHeight)
 	},
 	methods: {
 		close() {
@@ -86,8 +94,20 @@ export default {
 			this.$refs.carousel.goTo(index)
 		},
 		openScreenshotDialog(src) {
-			this.selectedScreenshot = src
-			this.screenshotDialog = true
+			/*this.selectedScreenshot = src
+			this.screenshotDialog = true*/
+		},
+		updateCarouselHeight() {
+			const width = window.innerWidth
+			if (width < 600) {
+				this.carouselHeight = 200
+			} else if (width < 1000) {
+				this.carouselHeight = 300
+			} else if (width < 1921) {
+				this.carouselHeight = 400
+			} else {
+				this.carouselHeight = 500
+			}
 		},
 	},
 }
@@ -109,7 +129,11 @@ export default {
 .thumbnail-container {
 	margin-top: 16px;
 	overflow-x: auto;
-	white-space: nowrap;
+}
+
+.thumbnail-row {
+	display: flex;
+	flex-wrap: nowrap;
 }
 
 .thumbnail-col {

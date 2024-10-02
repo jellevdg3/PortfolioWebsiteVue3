@@ -2,7 +2,7 @@
 	<v-container>
 		<v-row>
 			<v-col cols="12" md="4" class="text-center">
-				<v-avatar size="350" class="mb-12">
+				<v-avatar :size="profileAvatarSize" class="mb-12">
 					<v-img :src="aboutData.profileImage" alt="Profile Picture"></v-img>
 				</v-avatar>
 			</v-col>
@@ -19,7 +19,7 @@
 				<h3 class="mt-6">Education</h3>
 				<v-card class="mb-4 education-container d-flex" v-for="(edu, index) in aboutData.education"
 					:key="index">
-					<v-avatar size="150" class="ma-4">
+					<v-avatar :size="educationAvatarSize" class="ma-4">
 						<img src="https://via.placeholder.com/150" alt="Education Icon">
 					</v-avatar>
 					<div class="my-4">
@@ -53,12 +53,49 @@ export default {
 				education: [],
 				cvLink: ''
 			},
-		}
+			profileAvatarSize: 350, // Default profile avatar size
+			educationAvatarSize: 150, // Default education avatar size
+		};
 	},
 	async mounted() {
 		this.aboutData = await getAboutData();
+		this.setProfileAvatarSize();
+		this.setEducationAvatarSize();
+		window.addEventListener('resize', this.setProfileAvatarSize);
+		window.addEventListener('resize', this.setEducationAvatarSize);
+	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this.setProfileAvatarSize);
+		window.removeEventListener('resize', this.setEducationAvatarSize);
+	},
+	methods: {
+		// Separate function for profile avatar resizing with 150, 250, 350 steps
+		setProfileAvatarSize() {
+			const width = window.innerWidth;
+			if (width < 950) {
+				this.profileAvatarSize = 350;
+			} else if (width < 1300) {
+				this.profileAvatarSize = 250;
+			} else if (width < 1920) {
+				this.profileAvatarSize = 350;
+			}
+			else {
+				this.profileAvatarSize = 500;
+			}
+		},
+		// Function for education avatar resizing with 80, 100, 150 steps
+		setEducationAvatarSize() {
+			const width = window.innerWidth;
+			if (width < 600) {
+				this.educationAvatarSize = 80;
+			} else if (width < 1000) {
+				this.educationAvatarSize = 100;
+			} else {
+				this.educationAvatarSize = 150;
+			}
+		}
 	}
-}
+};
 </script>
 
 <style scoped>

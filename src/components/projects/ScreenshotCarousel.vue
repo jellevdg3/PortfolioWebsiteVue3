@@ -29,7 +29,5 @@ export default {
 </script>
 
 <style scoped>
-.v-carousel-item {
-	cursor: pointer;
-}
+.v-carousel-item {}
 </style>
