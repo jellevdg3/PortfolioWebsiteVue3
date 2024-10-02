@@ -2,25 +2,35 @@
 	<v-app>
 		<NavBar />
 		<v-main>
-			<div class="half-empty-space"></div>
-			<div id="about" class="mt-16 scroll-offset">
-				<About />
+			<div id="about" class="scroll-offset">
+				<v-card>
+					<div class="half-empty-space"></div>
+					<h1>About Me</h1>
+					<About class="mt-4" />
+					<div class="full-empty-space"></div>
+				</v-card>
 			</div>
 
-			<div class="half-empty-space"></div>
-			<v-divider class="my-6"></v-divider>
 			<div class="half-empty-space"></div>
 
 			<div id="projects" class="scroll-offset">
-				<Projects />
+				<v-card>
+					<div class="half-empty-space"></div>
+					<h1>Projects</h1>
+					<Projects class="mt-4" />
+					<div class="full-empty-space"></div>
+				</v-card>
 			</div>
 
 			<div class="half-empty-space"></div>
-			<v-divider class="my-6"></v-divider>
-			<div class="half-empty-space"></div>
 
 			<div id="work-experience" class="scroll-offset">
-				<WorkExperience />
+				<v-card>
+					<div class="half-empty-space"></div>
+					<h1>Work Experience</h1>
+					<WorkExperience class="mt-4" />
+					<div class="full-empty-space"></div>
+				</v-card>
 			</div>
 		</v-main>
 		<Footer />
@@ -46,7 +56,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .scroll-offset {
 	scroll-margin-top: 64px;
 }
@@ -57,5 +67,14 @@ export default {
 
 .half-empty-space {
 	height: 5vw;
+}
+
+h1 {
+	text-align: center;
+	font-size: 5rem;
+}
+
+.v-card {
+	background-color: #181818 !important;
 }
 </style>

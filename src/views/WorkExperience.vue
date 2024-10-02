@@ -1,6 +1,5 @@
 <template>
 	<v-container class="d-flex flex-column align-center work-experience-container">
-		<h2 class="text-center">Work Experience</h2>
 		<WorkExperienceItem v-for="job in workExperience" :key="job.id" :job="job" />
 	</v-container>
 </template>

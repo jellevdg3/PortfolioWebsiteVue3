@@ -7,7 +7,6 @@
 				</v-avatar>
 			</v-col>
 			<v-col cols="12" md="8">
-				<h2>About Me</h2>
 				<p>
 					{{ aboutData.aboutText }}
 				</p>
