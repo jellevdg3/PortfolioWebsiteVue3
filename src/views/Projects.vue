@@ -1,7 +1,7 @@
 <template>
 	<v-container>
+		<h1 class="text-center mb-8">Projects</h1>
 		<TileContainer :projects="featuredProject" v-if="featuredProject" width="826" height="400" />
-		<v-divider class="my-6" v-if="featuredProject"></v-divider>
 		<TileContainer :projects="otherProjects" width="400" height="200" />
 	</v-container>
 </template>
