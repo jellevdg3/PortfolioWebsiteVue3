@@ -8,14 +8,28 @@
 				</v-btn>
 			</v-card-title>
 			<v-card-text>
-				<ScreenshotCarousel ref="carousel" :height="carouselHeight" :screenshots="currentProject.screenshots"
-					@screenshot-clicked="openScreenshotDialog" />
+				<ScreenshotCarousel
+					ref="carousel"
+					:height="carouselHeight"
+					:screenshots="currentProject.screenshots"
+					:active-slide="activeSlide"
+					@update:activeSlide="updateActiveSlide"
+				/>
 
 				<div class="thumbnail-container">
 					<div class="thumbnail-row">
-						<div v-for="(screenshot, index) in currentProject.screenshots" :key="index"
-							class="thumbnail-col">
-							<v-img :src="screenshot" class="thumbnail mr-4" @click="goToSlide(index)"></v-img>
+						<div
+							v-for="(screenshot, index) in currentProject.screenshots"
+							:key="index"
+							class="thumbnail-col"
+						>
+							<v-img
+								:src="screenshot"
+								class="thumbnail mr-4"
+								@click="goToSlide(index)"
+								:class="{ 'selected-thumbnail': index === activeSlide }"
+								:ref="'thumbnail-' + index"
+							></v-img>
 						</div>
 					</div>
 				</div>
@@ -71,6 +85,7 @@ export default {
 			screenshotDialog: false,
 			selectedScreenshot: '',
 			carouselHeight: 200, // Default height
+			activeSlide: 0, // Track the active slide
 		}
 	},
 	mounted() {
@@ -92,10 +107,8 @@ export default {
 		},
 		goToSlide(index) {
 			this.$refs.carousel.goTo(index)
-		},
-		openScreenshotDialog(src) {
-			/*this.selectedScreenshot = src
-			this.screenshotDialog = true*/
+			this.activeSlide = index
+			this.scrollThumbnailIntoView(index)
 		},
 		updateCarouselHeight() {
 			const width = window.innerWidth
@@ -108,6 +121,27 @@ export default {
 			} else {
 				this.carouselHeight = 500
 			}
+		},
+		updateActiveSlide(index) {
+			this.activeSlide = index
+			this.scrollThumbnailIntoView(index)
+		},
+		scrollThumbnailIntoView(index) {
+			this.$nextTick(() => {
+				const thumbnail = this.$refs[`thumbnail-${index}`]
+				if (thumbnail && thumbnail[0]) {
+					thumbnail[0].$el.scrollIntoView({
+						behavior: 'smooth',
+						block: 'nearest',
+						inline: 'nearest',
+					})
+				}
+			})
+		},
+	},
+	watch: {
+		activeSlide(newIndex) {
+			this.scrollThumbnailIntoView(newIndex)
 		},
 	},
 }
@@ -145,5 +179,11 @@ export default {
 	height: 60px;
 	object-fit: cover;
 	cursor: pointer;
+	border: 2px solid transparent;
+	transition: border 0.3s;
+}
+
+.selected-thumbnail {
+	border: 2px solid #ff5722; /* Highlight color */
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-	<v-carousel hide-delimiters :show-arrows="true" v-model="activeSlide" ref="carousel">
+	<v-carousel hide-delimiters :show-arrows="true" v-model="localActiveSlide" ref="carousel">
 		<v-carousel-item v-for="(screenshot, index) in screenshots" :key="index">
-			<v-img :src="screenshot" @click="$emit('screenshot-clicked', screenshot)"></v-img>
+			<v-img :src="screenshot"></v-img>
 		</v-carousel-item>
 	</v-carousel>
 </template>
@@ -14,20 +14,49 @@ export default {
 			type: Array,
 			required: true,
 		},
+		height: {
+			type: Number,
+			default: 200,
+		},
+		activeSlide: {
+			type: Number,
+			default: 0,
+		},
 	},
 	data() {
 		return {
-			activeSlide: 0,
+			localActiveSlide: this.activeSlide,
 		};
+	},
+	watch: {
+		localActiveSlide(newVal) {
+			this.$emit('update:activeSlide', newVal)
+		},
+		activeSlide(newVal) {
+			if (newVal !== this.localActiveSlide) {
+				this.localActiveSlide = newVal
+			}
+		},
 	},
 	methods: {
 		goTo(index) {
-			this.activeSlide = index;
+			this.localActiveSlide = index;
 		},
 	},
 };
 </script>
 
 <style scoped>
-.v-carousel-item {}
+.v-carousel {
+	height: 100%;
+}
+
+.v-carousel-item {
+	height: 100%;
+}
+
+.v-img {
+	object-fit: contain;
+	height: 100%;
+}
 </style>
