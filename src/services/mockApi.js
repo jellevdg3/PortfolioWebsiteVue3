@@ -472,7 +472,7 @@ const workExperience = [
 ];
 
 const aboutData = {
-	cvLink: '/documents/cv-template.pdf',
+	cvLink: 'documents/cv-template.pdf',
 	profileImage: 'https://via.placeholder.com/500',
 	aboutText: `
 		Hi! My name is Jelle, and I am a passionate software engineer with 5 years of experience.
