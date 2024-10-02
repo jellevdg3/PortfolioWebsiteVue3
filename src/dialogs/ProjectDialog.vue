@@ -8,14 +8,14 @@
 				</v-btn>
 			</v-card-title>
 			<v-card-text>
-				<ScreenshotCarousel ref="carousel" :height="carouselHeight" :screenshots="currentProject.screenshots"
-					:active-slide="activeSlide" @update:activeSlide="updateActiveSlide" />
+				<ScreenshotCarousel ref="carousel" :screenshots="currentProject.screenshots" :active-slide="activeSlide"
+					@update:activeSlide="updateActiveSlide" />
 
 				<div class="thumbnail-container">
 					<div class="thumbnail-row">
 						<div v-for="(screenshot, index) in currentProject.screenshots" :key="index"
 							class="thumbnail-col">
-							<v-img :src="screenshot" class="thumbnail mr-4" @click="goToSlide(index)"
+							<v-img :src="screenshot" class="thumbnail" @click="goToSlide(index)"
 								:class="{ 'selected-thumbnail': index === activeSlide }"
 								:ref="'thumbnail-' + index"></v-img>
 						</div>
@@ -68,16 +68,8 @@ export default {
 		return {
 			screenshotDialog: false,
 			selectedScreenshot: '',
-			carouselHeight: 200, // Default height
 			activeSlide: 0, // Track the active slide
 		}
-	},
-	mounted() {
-		this.updateCarouselHeight()
-		window.addEventListener('resize', this.updateCarouselHeight)
-	},
-	beforeDestroy() {
-		window.removeEventListener('resize', this.updateCarouselHeight)
 	},
 	methods: {
 		close() {
@@ -93,18 +85,6 @@ export default {
 			this.$refs.carousel.goTo(index)
 			this.activeSlide = index
 			this.scrollThumbnailIntoView(index)
-		},
-		updateCarouselHeight() {
-			const width = window.innerWidth
-			if (width < 600) {
-				this.carouselHeight = 200
-			} else if (width < 1000) {
-				this.carouselHeight = 300
-			} else if (width < 1921) {
-				this.carouselHeight = 400
-			} else {
-				this.carouselHeight = 500
-			}
 		},
 		updateActiveSlide(index) {
 			this.activeSlide = index
@@ -166,7 +146,7 @@ export default {
 
 .thumbnail {
 	width: 100px;
-	height: 60px;
+	height: 52px;
 	object-fit: cover;
 	cursor: pointer;
 	border: 2px solid transparent;
@@ -174,7 +154,7 @@ export default {
 }
 
 .selected-thumbnail {
-	border: 2px solid #ff5722;
+	border: 2px solid #cfb0ff;
 	/* Highlight color */
 }
 </style>

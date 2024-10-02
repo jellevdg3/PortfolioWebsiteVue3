@@ -1,6 +1,7 @@
 <template>
 	<div class="carousel-wrapper">
-		<v-carousel hide-delimiters :show-arrows="false" v-model="localActiveSlide" ref="carousel" @click="handleClick">
+		<v-carousel hide-delimiters :show-arrows="false" v-model="localActiveSlide" :height="carouselHeight"
+			ref="carousel" @click="handleClick">
 			<v-carousel-item v-for="(screenshot, index) in screenshots" :key="index">
 				<v-img :src="screenshot"></v-img>
 			</v-carousel-item>
@@ -34,6 +35,7 @@ export default {
 	data() {
 		return {
 			localActiveSlide: this.activeSlide,
+			carouselHeight: 200, // Default height
 		};
 	},
 	watch: {
@@ -45,6 +47,13 @@ export default {
 				this.localActiveSlide = newVal;
 			}
 		},
+	},
+	mounted() {
+		this.updateCarouselHeight()
+		window.addEventListener('resize', this.updateCarouselHeight)
+	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this.updateCarouselHeight)
 	},
 	methods: {
 		goTo(index) {
@@ -73,23 +82,29 @@ export default {
 				this.localActiveSlide = 0;
 			}
 		},
+		updateCarouselHeight() {
+			const width = window.innerWidth
+			if (width < 600) {
+				this.carouselHeight = 200
+			} else if (width < 1000) {
+				this.carouselHeight = 300
+			} else if (width < 1921) {
+				this.carouselHeight = 400
+			} else {
+				this.carouselHeight = 500
+			}
+		},
 	},
-};
+}
 </script>
 
 <style scoped>
 .carousel-wrapper {
 	position: relative;
-	height: 100%;
 }
 
 .v-carousel {
-	height: 100%;
 	cursor: pointer;
-}
-
-.v-carousel-item {
-	height: 100%;
 }
 
 .v-img {
