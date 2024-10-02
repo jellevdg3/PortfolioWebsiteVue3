@@ -102,7 +102,7 @@ export default {
 					thumbnail[0].$el.scrollIntoView({
 						behavior: 'smooth',
 						block: 'nearest',
-						inline: 'nearest',
+						inline: 'center',
 					});
 				}
 			});
