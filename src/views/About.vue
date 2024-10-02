@@ -62,14 +62,6 @@ export default {
 </script>
 
 <style scoped>
-.mt-6 {
-	margin-top: 1.5rem;
-}
-
-.mb-4 {
-	margin-bottom: 1rem;
-}
-
 .education-container {
 	max-width: 800px;
 	width: 100%;

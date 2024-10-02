@@ -58,7 +58,19 @@ export default {
 
 <style scoped>
 .scroll-offset {
-	scroll-margin-top: 64px;
+	scroll-margin-top: -40px;
+}
+
+@media (max-width: 1919px) {
+	.scroll-offset {
+		scroll-margin-top: 0px;
+	}
+}
+
+@media (max-width: 1000px) {
+	.scroll-offset {
+		scroll-margin-top: 40px;
+	}
 }
 
 .full-empty-space {
@@ -72,6 +84,10 @@ export default {
 h1 {
 	text-align: center;
 	font-size: 5rem;
+
+	@media (max-width: 600px) {
+		font-size: 3rem;
+	}
 }
 
 .v-card {
