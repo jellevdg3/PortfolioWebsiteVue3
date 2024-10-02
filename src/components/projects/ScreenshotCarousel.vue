@@ -14,10 +14,6 @@ export default {
 			type: Array,
 			required: true,
 		},
-		height: {
-			type: Number,
-			default: 200,
-		},
 		activeSlide: {
 			type: Number,
 			default: 0,
