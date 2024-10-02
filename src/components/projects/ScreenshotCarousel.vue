@@ -1,5 +1,5 @@
 <template>
-	<div class="carousel-wrapper">
+	<div class="carousel-wrapper pa-0 ma-0">
 		<v-carousel hide-delimiters :show-arrows="false" v-model="localActiveSlide" :height="carouselHeight"
 			ref="carousel" @click="handleClick">
 			<v-carousel-item v-for="(screenshot, index) in screenshots" :key="index">
@@ -62,7 +62,7 @@ export default {
 		handleClick(event) {
 			const carouselWidth = this.$refs.carousel.$el.clientWidth;
 			const clickX = event.clientX - this.$refs.carousel.$el.getBoundingClientRect().left;
-			if (clickX < carouselWidth / 2) {
+			if (clickX < carouselWidth / 3) {
 				this.prev();
 			} else {
 				this.next();
@@ -84,9 +84,9 @@ export default {
 		},
 		updateCarouselHeight() {
 			const width = window.innerWidth
-			if (width < 600) {
+			if (width < 700) {
 				this.carouselHeight = 200
-			} else if (width < 1000) {
+			} else if (width < 1200) {
 				this.carouselHeight = 300
 			} else if (width < 1921) {
 				this.carouselHeight = 400
