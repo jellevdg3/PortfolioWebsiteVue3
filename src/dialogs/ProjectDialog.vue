@@ -2,7 +2,7 @@
 	<v-dialog v-model="internalDialog" fullscreen @click="closeBackground" class="background">
 		<v-card class="pa-0 ma-0 d-flex justify-center background"
 			style="display: flex; justify-content: center; align-items: center;">
-			<div class="content-container" style="max-width: 1200px; width: 100%;">
+			<div v-if="internalDialog" class="content-container" style="max-width: 1200px; width: 100%;">
 				<v-card-title class="d-flex justify-space-between align-center">
 					<span class="headline">{{ currentProject.title }}</span>
 					<v-btn icon @click="close">

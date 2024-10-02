@@ -1,7 +1,7 @@
 <template>
 	<v-app-bar app color="primary" dark>
 		<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-		<v-toolbar-title>My Portfolio</v-toolbar-title>
+		<v-toolbar-title>Jelle's Portfolio</v-toolbar-title>
 		<v-spacer></v-spacer>
 		<v-btn text class="d-none d-md-flex" @click="scrollTo('about')">About Me</v-btn>
 		<v-btn text class="d-none d-md-flex" @click="scrollTo('projects')">Projects</v-btn>
