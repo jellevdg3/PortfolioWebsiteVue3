@@ -6,13 +6,19 @@
 			<div id="about" class="mt-16 scroll-offset">
 				<About />
 			</div>
-			<div class="full-empty-space"></div>
+
+			<div class="half-empty-space"></div>
 			<v-divider class="my-6"></v-divider>
+			<div class="half-empty-space"></div>
+
 			<div id="projects" class="scroll-offset">
 				<Projects />
 			</div>
-			<div class="full-empty-space"></div>
+
+			<div class="half-empty-space"></div>
 			<v-divider class="my-6"></v-divider>
+			<div class="half-empty-space"></div>
+
 			<div id="work-experience" class="scroll-offset">
 				<WorkExperience />
 			</div>
@@ -26,7 +32,7 @@ import NavBar from './components/common/NavBar.vue'
 import Footer from './components/common/Footer.vue'
 import About from './views/About.vue'
 import Projects from './views/Projects.vue'
-import WorkExperience from './components/WorkExperience.vue' // Import WorkExperience as a component
+import WorkExperience from './views/WorkExperience.vue'
 
 export default {
 	name: 'App',
@@ -35,7 +41,7 @@ export default {
 		Footer,
 		About,
 		Projects,
-		WorkExperience, // Register WorkExperience component
+		WorkExperience,
 	},
 }
 </script>
