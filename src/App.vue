@@ -32,6 +32,7 @@
 					<div class="full-empty-space"></div>
 				</v-card>
 			</div>
+			<div class="half-empty-space"></div>
 		</v-main>
 		<Footer />
 	</v-app>
