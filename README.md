@@ -1,6 +1,6 @@
-# Jelle's Portfolio
+# Portfolio Template
 
-A **template** personal portfolio website built using **Vue.js 3** and **Vuetify 3**. This project showcases projects, work experience, and provides information about Jelle, a passionate software engineer with experience in game development and software development. **Others are welcome to use and customize this template** to create their own portfolio websites. Please note that the data included is **placeholder content** and should be replaced with your personal information and projects.
+A **template** personal portfolio website built with **Vue.js 3** and **Vuetify 3**. This project features sections for About Me, Projects, and Work Experience, organized through multiple components and navigation items within a single webpage. **Others are welcome to use and customize this template** to create their own portfolio websites. Please note that the data included is **placeholder content** and should be replaced with your personal information and projects.
 
 ## Table of Contents
 
@@ -25,8 +25,19 @@ A **template** personal portfolio website built using **Vue.js 3** and **Vuetify
 This portfolio website template includes the following sections:
 
 - **About Me**: An introduction and background, including skills and education.
+
+
+![AboutMe](ReadMeImages/AboutMe.png)
+
 - **Projects**: A gallery of projects with detailed descriptions and screenshots.
+
+
+![Projects](ReadMeImages/Projects.png)
+
 - **Work Experience**: A timeline of previous work experiences and responsibilities.
+
+
+![WorkExperience](ReadMeImages/WorkExperience.png)
 
 The website is designed to be responsive and user-friendly, utilizing Vuetify's Material Design components. **Feel free to customize this template to suit your personal branding and project showcases.**
 
@@ -37,6 +48,9 @@ The website is designed to be responsive and user-friendly, utilizing Vuetify's 
 - **Project Gallery**: Interactive project tiles that open detailed dialogs with carousels.
 - **Smooth Navigation**: Navigation bar with smooth scrolling to different sections.
 - **Theming**: Dark theme using Vuetify's theming capabilities.
+- **Screenshot Carousel**: A screenshot carousel with easy navigation on both PC and mobile.
+
+![Screenshot Carousel](ReadMeImages/ScreenshotCarousel.png)
 
 ## Project Structure
 
